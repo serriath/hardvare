@@ -1,15 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Hardvare.API
 {
@@ -26,6 +21,23 @@ namespace Hardvare.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(sui =>
+                sui.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "The Hardvare Store API",
+                    Description = "En enkel jernvarehandel fra Norges fjorder",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "William Francis",
+                        Email = "dev.williamfrancis@gmail.com",
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Use under OpenApiLicense",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +57,12 @@ namespace Hardvare.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(sui =>
+            {
+                sui.SwaggerEndpoint("/swagger/v1/swagger.json", "The Hardvare Store");
             });
         }
     }
