@@ -1,4 +1,6 @@
+using Hardvare.Common.DataTransferObjects;
 using Hardvare.Database.Interfaces;
+using Hardvare.Database.Mappers;
 using Hardvare.Database.Models;
 using Hardvare.Database.Queries;
 using Hardvare.Services.Interfaces;
@@ -45,9 +47,13 @@ namespace Hardvare.API
                 }));
 
             AddServices(services);
+            AddRepositories(services);
+            AddMappers(services);
 
             services.AddDbContext<HardvareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HardvareContext")));
         }
+
+       
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -77,7 +83,17 @@ namespace Hardvare.API
         private void AddServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            
+        }
+
+        private void AddRepositories(IServiceCollection services)
+        {
             services.AddScoped<IUserRepository, UserRepository>();
+        }
+
+        private void AddMappers(IServiceCollection services)
+        {
+            services.AddTransient<IMapper<UserDto, User>, UserMapper>();
         }
     }
 }

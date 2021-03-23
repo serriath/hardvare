@@ -4,14 +4,16 @@ using Hardvare.Database.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Hardvare.Database.Migrations
 {
     [DbContext(typeof(HardvareContext))]
-    partial class HardvareContextModelSnapshot : ModelSnapshot
+    [Migration("20210323183305_AddPasswordWithSalt")]
+    partial class AddPasswordWithSalt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,18 +73,6 @@ namespace Hardvare.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRole");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            RoleName = "Admin"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            RoleName = "Customer"
-                        });
                 });
 
             modelBuilder.Entity("Hardvare.Database.Models.User", b =>
