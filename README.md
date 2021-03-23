@@ -1,2 +1,2 @@
-# hardvare
+# Hardvare
 a hardware store project
