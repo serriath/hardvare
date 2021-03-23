@@ -19,7 +19,6 @@ namespace Hardvare.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -41,19 +40,10 @@ namespace Hardvare.API
                     }
                 }));
 
-            services.AddScoped<IAuthorRepository, AuthorRepository>();
-
-            ////Autofac
-            //var builder = new ContainerBuilder();
-            //builder.RegisterType<AuthorRepository>().As<IAuthorRepository>();
-            //builder.Populate(services);
-
-
-            //var container = builder.Build();
-            //return new AutofacServiceProvider(container);
+            AddServices(services);
+            
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -77,6 +67,11 @@ namespace Hardvare.API
             {
                 sui.SwaggerEndpoint("/swagger/v1/swagger.json", "The Hardvare Store");
             });
+        }
+
+        private void AddServices(IServiceCollection services)
+        {
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
         }
     }
 }

@@ -24,9 +24,6 @@ C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Swas
 C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\obj\Debug\netcoreapp3.1\Hardvare.API.csproj.CopyComplete
-C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Autofac.dll
-C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Autofac.Extensions.DependencyInjection.dll
-C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Hardvare.Common.dll
 C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Hardvare.Services.dll
 C:\TestProjects\Aise\hardvare\Hardvare\Hardvare.API\bin\Debug\netcoreapp3.1\Hardvare.Common.pdb

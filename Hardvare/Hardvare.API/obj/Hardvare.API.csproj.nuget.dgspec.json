@@ -49,10 +49,6 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "Autofac.Extensions.DependencyInjection": {
-              "target": "Package",
-              "version": "[7.1.0, )"
-            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.1.1, )"
