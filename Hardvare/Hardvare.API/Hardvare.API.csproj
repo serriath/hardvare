@@ -5,7 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hardvare.Common\Hardvare.Common.csproj" />
+    <ProjectReference Include="..\Hardvare.Services\Hardvare.Services.csproj" />
   </ItemGroup>
 
 

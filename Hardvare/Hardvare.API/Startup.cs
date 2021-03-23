@@ -1,3 +1,5 @@
+using Hardvare.Services.Interfaces;
+using Hardvare.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +40,17 @@ namespace Hardvare.API
                         Url = new Uri("https://example.com/license"),
                     }
                 }));
+
+            services.AddScoped<IAuthorRepository, AuthorRepository>();
+
+            ////Autofac
+            //var builder = new ContainerBuilder();
+            //builder.RegisterType<AuthorRepository>().As<IAuthorRepository>();
+            //builder.Populate(services);
+
+
+            //var container = builder.Build();
+            //return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
