@@ -1,7 +1,11 @@
+using Hardvare.Database.Interfaces;
+using Hardvare.Database.Models;
+using Hardvare.Database.Queries;
 using Hardvare.Services.Interfaces;
 using Hardvare.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,7 +45,8 @@ namespace Hardvare.API
                 }));
 
             AddServices(services);
-            
+
+            services.AddDbContext<HardvareContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HardvareContext")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -71,7 +76,8 @@ namespace Hardvare.API
 
         private void AddServices(IServiceCollection services)
         {
-            services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }
