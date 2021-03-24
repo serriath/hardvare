@@ -1,10 +1,10 @@
 ﻿using System.Security.Cryptography;
 
-namespace Hardvare.Services.Utilities
+namespace Hardvare.Common.Utilities
 {
     public static class CryptoUtilities
     {
-        internal static byte[] HashPassword(byte[] plainText, byte[] salt)
+        public static byte[] HashPassword(byte[] plainText, byte[] salt)
         {
             var algorithm = new SHA256Managed();
 
@@ -23,7 +23,7 @@ namespace Hardvare.Services.Utilities
             return algorithm.ComputeHash(plainTextWithSaltBytes);
         }
 
-        internal static byte[] CreateSalt()
+        public static byte[] CreateSalt()
         {
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
 

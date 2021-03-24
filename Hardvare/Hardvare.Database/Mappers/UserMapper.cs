@@ -16,8 +16,8 @@ namespace Hardvare.Database.Mappers
                 LastName = value.LastName,
                 Id = value.Id,
                 IsActive = value.IsActive,
-                Password = value.Password,
                 UserRole = (UserRoleEnum)value.UserRoleId,
+                Password = value.Password,
                 Salt = value.Salt
             };
         }

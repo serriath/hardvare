@@ -1,9 +1,6 @@
-﻿using Hardvare.Common.DataTransferObjects;
-using Hardvare.Common.Requests;
+﻿using Hardvare.Common.Requests;
 using Hardvare.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -21,34 +18,43 @@ namespace Hardvare.API.Controllers
             _userService = userService;
         }
 
-        [HttpGet("GetUserById")]
-        public async Task<UserDto> GetUserById(int UserId, CancellationToken cancellationToken)
+        [HttpGet("get-user/{userId}")]
+        public async Task<IActionResult> GetUserById(int userId, CancellationToken cancellationToken)
         {
-            var user = await _userService.GetUserById(UserId, cancellationToken);
+            var user = await _userService.GetUserById(userId, cancellationToken);
 
-            //security and all that
-            user.Salt = new byte[0];
-            user.Password = new byte[0];
-
-            return user;
+            return new OkObjectResult(user);
         }
 
-        [HttpPost("CreateUser")]
-        public async Task<int> CreateUser(CreateUserRequest request, CancellationToken cancellationToken)
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateUser(CreateUserRequest request, CancellationToken cancellationToken)
         {
-            return await _userService.CreateUser(request, cancellationToken);
+            var userId = await _userService.CreateUser(request, cancellationToken);
+
+            return new OkObjectResult(userId);
         }
 
-        [HttpPut("UpdateUser")]
-        public async Task<bool> UpdateUser(UpdateUserRequest request, CancellationToken cancellationToken)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateUser(UpdateUserRequest request, CancellationToken cancellationToken)
         {
-            return await _userService.UpdateUser(request, cancellationToken);
+            var success = await _userService.UpdateUser(request, cancellationToken);
+
+            return new OkObjectResult(success);
         }
 
-        [HttpPut("DeactivateUser")]
-        public async Task<bool> DeactivateUser(int UserId, CancellationToken cancellationToken)
+        [HttpPut("deactivate")]
+        public async Task<IActionResult> DeactivateUser(int userId, CancellationToken cancellationToken)
         {
-            return await _userService.DeactivateUser(UserId, cancellationToken);
+            var success = await _userService.DeactivateUser(userId, cancellationToken);
+            return new OkObjectResult(success);
+        }
+
+        [HttpPost("get-paged")]
+        public async Task<IActionResult> GetPagedUsers(GetPagedUsersByFilterRequest request, CancellationToken cancellationToken)
+        {
+            var pagedResults = await _userService.GetPagedUsers(request, cancellationToken);
+
+            return new OkObjectResult(pagedResults);
         }
     }
 }
